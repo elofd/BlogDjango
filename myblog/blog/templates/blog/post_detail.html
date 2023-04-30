@@ -18,6 +18,9 @@
   <p class="post-author">
     {{ post.author }}
   </p>
+  {% if user.is_staff %}
+  <h2 class="post-text"><a href="">Изменить</a></h2>
+  {% endif %}
 </div>
 <p class="back-link">
   <a href="{% url 'blog:post_list' %}">Назад к списку постов</a>

@@ -14,6 +14,11 @@ class SignUpView(CreateView):
     template_name = 'users/registration.html'
     success_url = reverse_lazy('blog:post_list')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        login(self.request, self.object)
+        return response
+
 
 class MyLogoutView(LogoutView):
     next_page = reverse_lazy("blog:post_list")

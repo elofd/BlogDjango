@@ -1,6 +1,7 @@
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import user_passes_test
 
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
@@ -25,23 +26,28 @@ class PostDetailView(DetailView):
         return context
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+class PostCreateView(UserPassesTestMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = 'blog/post_create.html'
     success_url = reverse_lazy('blog:post_list')
+
+    def test_func(self):
+        return self.request.user.is_staff
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
 
-
-class PostUpdateView(LoginRequiredMixin, UpdateView):
+class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'blog/post_create.html'
     success_url = reverse_lazy('blog:post_list')
+
+    def test_func(self):
+        return self.request.user.is_staff
 
     def form_valid(self, form):
         form.instance.author = self.request.user

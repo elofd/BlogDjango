@@ -8,8 +8,11 @@
 <h1 class="main-heading">
   Все публикации
 </h1>
+  {% if user.is_staff %}
+  <h2 class="post-title"><a href="">Новый пост</a></h2>
+  {% endif %}
 <ul class="post-list">
-  {% for post in posts %}
+  {% for post in posts|dictsortreversed:"created_date" %}
   <li class="post">
     <h2 class="post-title">
       <a href="{% url 'blog:post_detail' pk=post.pk %}">
