@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  Логин
+{% endblock %}
+
+{% block body %}
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">Войти</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'users:logout' %}">Выход</a></li>
+    {% else %}
+    <li><a href="{% url 'users:login' %}">Вход</a></li>
+    <li><a href="{% url 'users:user_create' %}">Регистрация</a></li>
+    {% endif %}
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  Детали {{ post.title }}
+{% endblock %}
+
+{% block body %}
+  <h1>
+    {{ post.title }}
+  </h1>
+  <p>
+    {{ post.created_date }}
+  </p>
+  <p>
+    {{ post.text }}
+  </p>
+  <p>
+    {{ post.author }}
+  </p>
+  <p>
+    <a href="{% url 'blog:post_list' %}">Назад к списку постов</a>
+  </p>
+  <h2>
+    Комментарии:
+  </h2>
+  <ul>
+    {% for comment in comments %}
+    <li>
+      <p>
+        {{ comment.author }} -- {{ comment.created_date }}
+      </p>
+      <p>
+        {{ comment.text }}
+      </p>
+    </li>
+    {% empty %}
+    <p>
+      Пока никто не оставил комментарий
+    </p>
+    {% endfor %}
+  </ul>
+  <p>
+    <a href="{% url 'blog:comment_create' pk=post.pk %}">Добавить новый комментарий</a>
+  </p>
+{% endblock %}
