@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <title>
-        {% block title %}
-        {% endblock %}
-    </title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+  <meta charset="UTF-8">
+  <title class="page-title">
+    {% block title %}
+    {% endblock %}
+  </title>
 </head>
+
 <body>
+  <ul class="nav-list">
     {% if user.is_authenticated %}
-    <li><a href="{% url 'users:logout' %}">Выход</a></li>
+    <li class="nav-item"><a class="nav-link" href="">Привет, {{ user.email }}</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'users:logout' %}">Выход</a></li>
     {% else %}
-    <li><a href="{% url 'users:login' %}">Вход</a></li>
-    <li><a href="{% url 'users:user_create' %}">Регистрация</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">Вход</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'users:user_create' %}">Регистрация</a></li>
     {% endif %}
+  </ul>
+  <div class="content-container">
     {% block body %}
     {% endblock %}
+  </div>
 </body>
+
 </html>

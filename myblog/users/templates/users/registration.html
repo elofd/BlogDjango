@@ -1,14 +1,14 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-  Регистрация
+Регистрация
 {% endblock %}
 
 {% block body %}
-  <h2>Регистрация</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
-  </form>
+<h2>Регистрация</h2>
+<form class="comment-form" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="submit-button" type="submit">Зарегистрироваться</button>
+</form>
 {% endblock %}

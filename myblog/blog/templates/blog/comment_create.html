@@ -1,19 +1,19 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-  Добавить комментарий
+Добавить комментарий
 {% endblock %}
 
 {% block body %}
-  <h1>
-    Добавить комментарий
-  </h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Сохранить">
-  </form>
-  <p>
-    <a href="{% url 'blog:post_detail' pk=pk %}">Назад к посту</a>
-  </p>
+<h1 class="title">
+  Добавить комментарий
+</h1>
+<form class="comment-form" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input class="submit-button" type="submit" value="Сохранить">
+</form>
+<p class="back-link">
+  <a href="{% url 'blog:post_detail' pk=pk %}">Назад к посту</a>
+</p>
 {% endblock %}

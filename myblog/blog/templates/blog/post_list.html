@@ -1,31 +1,31 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-  Публикации
+Публикации
 {% endblock %}
 
 {% block body %}
-  <h1>
-    Все публикации
-  </h1>
-  <ul>
-    {% for post in posts %}
-    <li>
-      <h2>
-        <a href="{% url 'blog:post_detail' pk=post.pk %}">
-          {{ post.title }}
-        </a>
-      </h2>
-      <p>
-        {{ post.created_date }}
-      </p>
-      <p>
-        {{ post.text }}
-      </p>
-      <p>
-        {{ post.author }}
-      </p>
-    </li>
-    {% endfor %}
-  </ul>
+<h1 class="main-heading">
+  Все публикации
+</h1>
+<ul class="post-list">
+  {% for post in posts %}
+  <li class="post">
+    <h2 class="post-title">
+      <a href="{% url 'blog:post_detail' pk=post.pk %}">
+        {{ post.title }}
+      </a>
+    </h2>
+    <p class="post-date">
+      {{ post.created_date }}
+    </p>
+    <p class="post-text">
+      {{ post.text }}
+    </p>
+    <p class="post-author">
+      {{ post.author }}
+    </p>
+  </li>
+  {% endfor %}
+</ul>
 {% endblock %}

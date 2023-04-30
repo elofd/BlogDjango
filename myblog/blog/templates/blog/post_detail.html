@@ -1,45 +1,47 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-  Детали {{ post.title }}
+Детали {{ post.title }}
 {% endblock %}
 
 {% block body %}
-  <h1>
+<div class="post">
+  <h1 class="post-title">
     {{ post.title }}
   </h1>
-  <p>
+  <p class="post-date">
     {{ post.created_date }}
   </p>
-  <p>
+  <p class="post-text">
     {{ post.text }}
   </p>
-  <p>
+  <p class="post-author">
     {{ post.author }}
   </p>
-  <p>
-    <a href="{% url 'blog:post_list' %}">Назад к списку постов</a>
-  </p>
-  <h2>
-    Комментарии:
-  </h2>
-  <ul>
-    {% for comment in comments %}
-    <li>
-      <p>
-        {{ comment.author }} -- {{ comment.created_date }}
-      </p>
-      <p>
-        {{ comment.text }}
-      </p>
-    </li>
-    {% empty %}
-    <p>
-      Пока никто не оставил комментарий
+</div>
+<p class="back-link">
+  <a href="{% url 'blog:post_list' %}">Назад к списку постов</a>
+</p>
+<h2 class="comment-heading">
+  Комментарии:
+</h2>
+<ul class="comment-list">
+  {% for comment in comments %}
+  <li class="comment">
+    <p class="comment-info">
+      {{ comment.author }} -- {{ comment.created_date }}
     </p>
-    {% endfor %}
-  </ul>
-  <p>
-    <a href="{% url 'blog:comment_create' pk=post.pk %}">Добавить новый комментарий</a>
+    <p class="comment-text">
+      {{ comment.text }}
+    </p>
+  </li>
+  {% empty %}
+  <p class="no-comment">
+    Пока никто не оставил комментарий
   </p>
+  {% endfor %}
+</ul>
+<p class="add-comment-link">
+  <a href="{% url 'blog:comment_create' pk=post.pk %}">Добавить новый комментарий</a>
+</p>
 {% endblock %}
