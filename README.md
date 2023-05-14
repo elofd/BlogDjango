@@ -1,4 +1,4 @@
-<h1># BlogDjango</h1>
+<h1>BlogDjango</h1>
 <p>
   Мой блог на django. 
 </p>
