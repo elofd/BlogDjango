@@ -7,7 +7,7 @@
   Python 3.9<br>
   Django 4.2<br>
   Pillow 9.5<br>
-  docutils 0.2
+  Docutils 0.2
 </p>
 <p>
   В блоге реализованы модели Post, Comment, CustomUser
